@@ -79,7 +79,7 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public int updateUser(User user) {
+  public int updateUser(User user) throws Exception {
     int rowCnt = 0;
     String sql = "Update user" +
                  "set pwd = ?, name = ?, birth = ?, sns = ? , reg_date = ?" +
@@ -102,5 +102,30 @@ public class UserDaoImpl implements UserDao {
     }
     return rowCnt;
   }
-  
+
+  @Override
+  public countUser(){
+    String sql = "count * from user";
+    try(
+      Conncetion conn = ds.getConnection();
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+    ){
+      // pstmt.excuteUpdate(); 틀렸당
+      rs.next();
+      int result = rs.getInt(1);
+      // count 쿼리 실행이 잘 이해가 안감 찾아보기
+      return result;
+    }
+  }
+
+  @Override
+  public void deleteAll() throws Exception {
+    String sql = "delete from user";
+    try(
+      Connection conn = ds.getConnection();
+      PreparedStatment pstmt = conn.prepareStatement(sql);
+    ){
+      pstmt.executeUpdate();      
+    }
+  }
 }
