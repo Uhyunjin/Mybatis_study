@@ -78,5 +78,29 @@ public class UserDaoImpl implements UserDao {
     }
   }
 
+  @Override
+  public int updateUser(User user) {
+    int rowCnt = 0;
+    String sql = "Update user" +
+                 "set pwd = ?, name = ?, birth = ?, sns = ? , reg_date = ?" +
+                 "where id = ?";
+    try(
+      Connection conn = ds.getConnection();
+      PreparedStatement pstmt = conn.prpareStatement(sql);
+      
+    ){
+      pstmt.setString(1, user.getPwd());
+      pstmt.setString(2, user.getName());
+      pstmt.setString(3, user.getEmail());
+      pstmt.setDate(4, new java.sql.Date(user.getBirth().getTime()));
+      pstmt.setString(5, user.getSns());
+      pstmt.setTimestamp(6, new java.sql.Timestamp(user.getReg_date().getTime()));
+      pstmt.setString(7, user.getId());
+      
+      rowCnt = pstmt.executeUpdate(); // 잘 업데이트 되었으면 1
+
+    }
+    return rowCnt;
+  }
   
 }
