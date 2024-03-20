@@ -58,6 +58,25 @@ public class UserDaoImpl implements UserDao {
     }
     return user;
   }
-  
+  @Override
+  public int insertUser(User user){
+    int rowCnt = 0;
+    String sql = "insert into user values (?,?,?,?,?,?,now())";
+
+    try(
+      Connection conn = ds.getConnection();
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+    ){
+      pstmt.setString(1, user.getID()); // 파라미터로 전달받은 user 객체의 getId()로 id를 불러와set
+      pstmt.setString(2, user.getPwd());
+      pstmt.setString(3, user.getName());
+      pstmt.setString(4, user.getEmail());
+      pstmt.setDate(5, new java.sql.Date(user.getBirth().getTime()));
+      pstmt.setString(6, user.getSns());
+
+      return pstmt.executeUpdate();
+    }
+  }
+
   
 }
