@@ -1,4 +1,6 @@
 package com.fastcampus.ch4.domain;
+import java.util.Date;
+import java.util.Objects;
 
 public class User {
 
@@ -21,15 +23,15 @@ public class User {
     this.sns = sns;
     this.reg_date = reg_date;
   }
-  
-  @Override
-  public boolean equals(Object o){
-    if (this==o) return true;
-    if (o==null || getClass() != o.getClass()} return false;
-    User user = (User) o;
-    return id.equals(user.id) && Objects.equals(pwd, user,pwd) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(birth, user.birth) && Objects.equals(sns, user.sns);
-  }
- @Override
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) && Objects.equals(pwd, user.pwd) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(birth, user.birth) && Objects.equals(sns, user.sns);
+    }
+    @Override
     public int hashCode() {
         return Objects.hash(id, pwd, name, email, birth, sns, reg_date);
     }

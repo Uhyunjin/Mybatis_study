@@ -33,12 +33,12 @@ public class LoginController {
     return "redirect:/";
   }
 
-  @PostMapping("/login");
-  public String login(String id, String pwd, String toURL, boolean rememmberId, 
+  @PostMapping("/login")
+  public String login(String id, String pwd, String toURL, boolean rememberId,
                      HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     if(!loginCheck(id, pwd)){
-      String mas = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "uft-8");
+      String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "uft-8");
       return "redirect:/login/login?msg="+msg;
     }
     // 로그인 체크로 id와 pwd가 일치하는지 체크

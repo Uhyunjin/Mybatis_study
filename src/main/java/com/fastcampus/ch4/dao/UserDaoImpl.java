@@ -14,37 +14,38 @@ import java.util.Date;
 
 @Repository
 public class UserDaoImpl implements UserDao {
+
   @Autowired
   DataSource ds;
 
   int FAIL = 0;
 
   @Override
-  public in deleteUser(String id) throws Exception{
+  public int deleteUser(String id) throws Exception{
     int rowCnt = FAIL;
     String sql = "delete from user where id = ?";
 
     try(  //try-with-resources
-      connection conn = ds.getConnection();
-      PreparedStatement pstmt = conn.prepareStatment(sql);
+      Connection conn = ds.getConnection();
+      PreparedStatement pstmt = conn.prepareStatement(sql);
     ){
       pstmt.setString(1, id);
-      return pstmt.executeUpdate():
+      return pstmt.executeUpdate();
     }
   }
 
   @Override
   public User selectUser(String id) throws Exception{
     User user = null;
-    String wql = "Select * from user where id = ?";
+    String sql = "Select * from user where id = ?";
     try(
-      Connection conn = ds.getConnection():
+      Connection conn = ds.getConnection();
       PreparedStatement pstmt = conn.prepareStatement(sql);
-      ResultSet rs = pstmt.excuteQuery();
+      ResultSet rs = pstmt.executeQuery();
     ){
       pstmt.setString(1, id); //id set
       
-      if(re.next()){
+      if(rs.next()){
         user = new User(); //user get
         user.setId(rs.getString(1)); // id get(index number)
         user.setPwd(rs.getString(2)); // pwd get
@@ -52,14 +53,14 @@ public class UserDaoImpl implements UserDao {
         user.setEmail(rs.getString(4)); // get email
         user.setBirth(new Date(rs.getDate(5).getTime())); // getDate=>sql date format
         user.setSns(rs.getString(6)); //get sns
-        user.setReg)date(new Date(rs.getTimestamp(7).getTime())); // get register date
+        user.setReg_date(new Date(rs.getTimestamp(7).getTime())); // get register date
         
       }
     }
     return user;
   }
   @Override
-  public int insertUser(User user){
+  public int insertUser(User user) throws Exception{
     int rowCnt = 0;
     String sql = "insert into user values (?,?,?,?,?,?,now())";
 
@@ -67,7 +68,7 @@ public class UserDaoImpl implements UserDao {
       Connection conn = ds.getConnection();
       PreparedStatement pstmt = conn.prepareStatement(sql);
     ){
-      pstmt.setString(1, user.getID()); // 파라미터로 전달받은 user 객체의 getId()로 id를 불러와set
+      pstmt.setString(1, user.getId()); // 파라미터로 전달받은 user 객체의 getId()로 id를 불러와set
       pstmt.setString(2, user.getPwd());
       pstmt.setString(3, user.getName());
       pstmt.setString(4, user.getEmail());
@@ -86,7 +87,7 @@ public class UserDaoImpl implements UserDao {
                  "where id = ?";
     try(
       Connection conn = ds.getConnection();
-      PreparedStatement pstmt = conn.prpareStatement(sql);
+      PreparedStatement pstmt = conn.prepareStatement(sql);
       
     ){
       pstmt.setString(1, user.getPwd());
@@ -104,11 +105,12 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public countUser(){
+  public int countUser()throws Exception{
     String sql = "count * from user";
     try(
-      Conncetion conn = ds.getConnection();
+      Connection conn = ds.getConnection();
       PreparedStatement pstmt = conn.prepareStatement(sql);
+      ResultSet rs = pstmt.executeQuery();
     ){
       // pstmt.excuteUpdate(); 틀렸당
       rs.next();
@@ -123,7 +125,7 @@ public class UserDaoImpl implements UserDao {
     String sql = "delete from user";
     try(
       Connection conn = ds.getConnection();
-      PreparedStatment pstmt = conn.prepareStatement(sql);
+      PreparedStatement pstmt = conn.prepareStatement(sql);
     ){
       pstmt.executeUpdate();      
     }
