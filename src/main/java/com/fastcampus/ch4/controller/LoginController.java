@@ -60,6 +60,21 @@ public class LoginController {
       response.addCookie(cookie); //0으로 설정한 쿠키를 응담에 담아준다
     }
 
-                     }
-  
+    //로그인 전의 화면으로 연결
+    toURL = toURL == null || toURL.equals("") ? "/" : toURL;
+    // toURL -> login form에서 hidden으로 받아옴
+    return "redirect:"+toURL;
+  }
+
+  private boolean loginCheck(String id, String pwd){
+    User user = null;
+    try{
+      user = userDao.selectUser(id);
+    } catch (Exception e){
+      e.printStackTrace();
+      return false;
+    }
+
+    return user !=null && user.getPwd().equals(pwd);
+  }
 }
