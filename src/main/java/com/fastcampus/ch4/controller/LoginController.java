@@ -38,7 +38,7 @@ public class LoginController {
                      HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     if(!loginCheck(id, pwd)){
-      String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "uft-8");
+      String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
       return "redirect:/login/login?msg="+msg;
     }
     // 로그인 체크로 id와 pwd가 일치하는지 체크
