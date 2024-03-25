@@ -15,4 +15,7 @@
         from board
         where bno = #{bno}
     </select>
+    <delete id="deleteAll">
+            delete from board
+    </delete>
 </mapper>
