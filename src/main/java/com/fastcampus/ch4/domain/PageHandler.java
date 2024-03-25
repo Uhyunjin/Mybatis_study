@@ -10,4 +10,6 @@ public class PageHandler {
     int endPage; // 내비게이션의 마지막 페이지
     boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지 여부
     boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지 여부
+
+
 }
