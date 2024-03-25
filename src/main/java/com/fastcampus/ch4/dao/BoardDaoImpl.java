@@ -14,7 +14,7 @@ public class BoardDaoImpl implements BoardDao {
     String namespace="com.fastcampus.ch4.dao.BoardMapper.";
 
     @Override
-    public BoardDto selectAll(int bno) throws Exception {
+    public BoardDto selectId(int bno) throws Exception {
         return session.selectOne(namespace+"select", bno);
     }
 }
