@@ -26,6 +26,11 @@
         ORDER BY reg_date DESC, bno DESC
     </select>
         
+    <select id="count" resultType="int">
+        select count(*) from board
+    </select>
+
+        
     <delete id="deleteAll">
             delete from board
     </delete>
