@@ -30,8 +30,14 @@
         select count(*) from board
     </select>
 
-        
     <delete id="deleteAll">
             delete from board
     </delete>
+
+    <insert id="insert" parameterType="BoardDto">
+        INSERT INTO board
+            (title, content, writer)
+        VALUES
+            (#{title}, #{content}, #{writer})
+    </insert>
 </mapper>
