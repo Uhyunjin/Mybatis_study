@@ -19,7 +19,7 @@ public class BoardDaoImplTest {
     public void select() throws Exception{
         assertTrue(boardDao!=null);
         System.out.println("boardDao = " + boardDao);
-        BoardDto boardDto = boardDao.selectId(1);
+        BoardDto boardDto = boardDao.select(1);
         System.out.println("boardDto = " + boardDto);
         assertTrue(boardDto.getBno().equals(1));
     }
