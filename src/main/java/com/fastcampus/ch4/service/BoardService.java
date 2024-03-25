@@ -1,4 +1,4 @@
-package com.fastcampus.ch4.Service;
+package com.fastcampus.ch4.service;
 
 import com.fastcampus.ch4.domain.BoardDto;
 
