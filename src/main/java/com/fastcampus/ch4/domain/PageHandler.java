@@ -11,5 +11,9 @@ public class PageHandler {
     boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지 여부
     boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지 여부
 
-
+    public PageHandler(int totalCnt, int page, int pageSize) {
+        this.totalCnt = totalCnt;
+        this.page = page;
+        this.pageSize = pageSize;
+    }
 }
