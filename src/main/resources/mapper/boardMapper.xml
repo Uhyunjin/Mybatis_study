@@ -3,7 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.fastcampus.ch4.dao.BoardMapper">
-    <select id="select" parameterType="int" resultType="BoardDto">
+        
+    <sql id="selectFromBoard">
         select bno,
                title,
                content,
@@ -13,6 +14,30 @@
                reg_date,
                up_date
         from board
+    </sql>
+        
+    <select id="selectId" parameterType="int" resultType="BoardDto">
+        <include refid="selectFromBoard"/>
         where bno = #{bno}
     </select>
+        
+    <select id="selectAll">
+        <include refid="selectFromBoard"/>
+        ORDER BY reg_date DESC, bno DESC
+    </select>
+        
+    <select id="count" resultType="int">
+        select count(*) from board
+    </select>
+
+    <delete id="deleteAll">
+            delete from board
+    </delete>
+
+    <insert id="insert" parameterType="BoardDto">
+        INSERT INTO board
+            (title, content, writer)
+        VALUES
+            (#{title}, #{content}, #{writer})
+    </insert>
 </mapper>
