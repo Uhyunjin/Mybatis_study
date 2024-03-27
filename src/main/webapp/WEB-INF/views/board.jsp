@@ -36,7 +36,15 @@
 	$(document).ready(function(){
 		$('#listBtn').on("click", function(){
 			location.href="<c:url value='/board/list'/>?page=${page}&pageSize=${pageSize}";
-		})
+		});
+		$('#removeBtn').on("click", function(){
+			let form = $('#form');
+			form.attr("action", "<c:url value='/board/remove'/>?page=${page}&pageSize=${pageSize}");
+			form.attr("method", "post");
+			form.submit();
+
+		});
+
 	});
 </script>
 </body>

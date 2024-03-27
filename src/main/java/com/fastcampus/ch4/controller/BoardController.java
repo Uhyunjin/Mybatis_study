@@ -18,6 +18,7 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
+    @PostMapping("/remove")
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session) {
         String writer = (String) session.getAttribute("id");
         try{
