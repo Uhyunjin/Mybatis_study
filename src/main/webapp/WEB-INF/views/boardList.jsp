@@ -24,6 +24,10 @@
 	if(msg=="del_com") {
 		alert("성공적으로 삭제되었습니다.");
 	}
+	if(msg=="del_err") {
+		alert("삭제에 실패했습니다.");
+	}
+
 </script>
 <div style="text-align:center">
 	<table border="1">
