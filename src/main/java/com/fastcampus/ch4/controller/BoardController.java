@@ -19,7 +19,7 @@ public class BoardController {
     BoardService boardService;
 
     @PostMapping("/remove")
-    public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session) {
+    public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
         String writer = (String) session.getAttribute("id");
         try{
             int rowCnt = boardService.remove(bno, writer);
@@ -28,11 +28,11 @@ public class BoardController {
             if(rowCnt!=1) {
                 throw new Exception("msg delete error");
             }
-            m.addAttribute("msg", "del_com");
+            rattr.addFlashAttribute("msg", "del_com");
         }
         catch (Exception e){
             e.printStackTrace();
-            m.addAttribute("msg", "del_err");
+            rattr.addFlashAttribute("msg", "del_err");
         }
         m.addAttribute("page", page);
         m.addAttribute("pageSize", pageSize);
