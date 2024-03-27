@@ -18,7 +18,14 @@
 		<li><a href="<c:url value='/register/add'/>">Sign in</a></li>
 		<li><a href=""><i class="fas fa-search small"></i></a></li>
 	</ul>
-</div><div style="text-align:center">
+</div>
+<script>
+	let msg = "${msg}"
+	if(msg=="del_com") {
+		alert("성공적으로 삭제되었습니다.");
+	}
+</script>
+<div style="text-align:center">
 	<table border="1">
 		<tr>
 			<th>번호</th>

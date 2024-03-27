@@ -22,7 +22,13 @@ public class BoardController {
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session) {
         String writer = (String) session.getAttribute("id");
         try{
+            int rowCnt = boardService.remove(bno, writer);
             boardService.remove(bno, writer);
+
+            if(rowCnt==1) {
+                m.addAttribute("msg", "del_com");
+                return "redirect:/board/list";
+            }
         }
         catch (Exception e){
             e.printStackTrace();
