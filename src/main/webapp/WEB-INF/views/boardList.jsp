@@ -20,7 +20,7 @@
 	</ul>
 </div>
 <script>
-	let msg = "${param.msg}"
+	let msg = "${msg}"
 	if(msg=="del_com") {
 		alert("성공적으로 삭제되었습니다.");
 	}
