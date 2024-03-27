@@ -25,13 +25,14 @@ public class BoardController {
             int rowCnt = boardService.remove(bno, writer);
             boardService.remove(bno, writer);
 
-            if(rowCnt==1) {
-                m.addAttribute("msg", "del_com");
-                return "redirect:/board/list";
+            if(rowCnt!=1) {
+                throw new Exception("msg delete error");
             }
+            m.addAttribute("msg", "del_com");
         }
         catch (Exception e){
             e.printStackTrace();
+            m.addAttribute("msg", "del_err");
         }
         m.addAttribute("page", page);
         m.addAttribute("pageSize", pageSize);
