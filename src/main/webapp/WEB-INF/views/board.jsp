@@ -21,7 +21,7 @@
 	</ul>
 </div>
 <div style="...">
-	<h2>게시물 읽기</h2>
+	<h2>게시물 ${mode=="new" ? "쓰기" : "읽기"}</h2>
 	<form action="" id="form">
 		<input type="text" name="bno" value="${boardDto.bno}" readonly="readonly">
 		<input type="text" name="title" value="${boardDto.title}" readonly="readonly">
