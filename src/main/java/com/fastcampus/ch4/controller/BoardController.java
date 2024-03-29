@@ -18,19 +18,26 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
+    @GetMapping("/write")
+    public String write(Model m) {
+        m.addAttribute("mode", "new");
+        //board뷰는 읽기와 쓰기에 사용되는데 쓰기 모드일때 모델에 new 데이터를 담아준다
+        return "board";
+    }
+
     @PostMapping("/remove")
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
+
         String writer = (String) session.getAttribute("id");
-        try{
+        try {
             int rowCnt = boardService.remove(bno, writer);
             boardService.remove(bno, writer);
 
-            if(rowCnt!=1) {
+            if (rowCnt != 1) {
                 throw new Exception("msg delete error");
             }
             rattr.addFlashAttribute("msg", "del_com");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", "del_err");
         }
