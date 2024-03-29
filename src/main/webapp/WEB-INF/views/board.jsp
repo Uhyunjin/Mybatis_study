@@ -23,7 +23,7 @@
 <div style="...">
 	<h2>게시물 ${mode=="new" ? "쓰기" : "읽기"}</h2>
 	<form action="" id="form">
-		<input type="text" name="bno" value="${boardDto.bno}" readonly="readonly">
+		<input type="text" name="bno" value="${boardDto.bno}" ${mode=="new"?"":'readonly="readonly"'}>
 		<input type="text" name="title" value="${boardDto.title}" readonly="readonly">
 		<textarea name="content" id="" cols="30" rows="10">${boardDto.content}</textarea>
 		<button type="button" id="writeBtn" class="btn">등록</button>
